@@ -55,4 +55,3 @@ for file_path in list_of_files:
         logging.info(f"{filename} is already exist")
         
 
-
