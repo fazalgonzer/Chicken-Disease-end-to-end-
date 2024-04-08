@@ -1,7 +1,8 @@
 from cnnClassfier.constants import *
 import os 
 from cnnClassfier.utils.common import read_yaml,create_directories
-from cnnClassfier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig,PrepareCallbacksConfig,TrainningConfig)
+from cnnClassfier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig,PrepareCallbacksConfig,TrainningConfig,EvaulationConfig)
+from pathlib import Path
 
 class ConfigurationManager:
     def __init__(
@@ -94,4 +95,12 @@ class ConfigurationManager:
     
 
 
-          
+    def get_validation_config(self) -> EvaulationConfig:
+            eval_config= EvaulationConfig(
+                    path_of_model=Path("artifacts/training/model.h5"),
+                    training_data=Path("artifacts/data_ingestion/Chicken-fecal-images"),
+                    all_params=self.params,
+                    params_image_size=self.params.IMAGE_SIZE,
+                    params_batch_size=self.params.BATCH_SIZE,)
+
+            return eval_config
